@@ -1,0 +1,21 @@
+-- Creating a health Application in SQL
+
+CREATE TABLE Health_Pal (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, height TEXT, weight TEXT, gender TEXT, goal TEXT);
+
+INSERT INTO Health_Pal (name, age, height, weight, gender, goal) VALUES ("Strapy Lad", 39, "6'1", "140lbs", "Male", "Muscle Gain");
+INSERT INTO Health_Pal (name, age, height, weight, gender, goal) VALUES ("Sally Slacks", 42, "5'3", "300lbs", "Female", "Weight Loss");
+INSERT INTO Health_Pal (name, age, height, weight, gender, goal) VALUES ("Perfect Pam", 22, "5'4", "120lbs", "Female", "Strength training");
+INSERT INTO Health_Pal (name, age, height, weight, gender, goal) VALUES ("John Smohn", 31, "5'11", "201lbs", "Male", "Strength training");
+INSERT INTO Health_Pal (name, age, height, weight, gender, goal) VALUES ("Chad Wick", 60, "5'10", "180lbs", "Male", "Muscle Gain");
+
+-- Viewing database
+SELECT * FROM Health_Pal;
+
+-- Updating goal column to include "Weight Gain"
+UPDATE Health_Pal SET goal = "Weight Gain" WHERE id=1;
+
+-- Deleting a user from the Health_Pal App.
+DELETE FROM Health_Pal WHERE id=2;
+
+-- Review database to ensure deletion and update were properly completed.
+SELECT * FROM Health_Pal;
