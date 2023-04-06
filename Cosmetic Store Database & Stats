@@ -1,0 +1,43 @@
+-- Create a cosmetics store database
+
+CREATE TABLE store_inventory (id INTEGER PRIMARY key, item TEXT, aisle TEXT, quantity INTEGER, price INTEGER, popularity INTEGER);
+
+INSERT into store_inventory VALUES(1, "Lipstick", 1, 15, 3, 81);
+INSERT into store_inventory VALUES(2, "Eye shadow pallet", 2, 8, 5, 95);
+INSERT into store_inventory VALUES(3, "Chapstick", 1, 20, 1, 85);
+INSERT into store_inventory VALUES(4, "Foundation", 3, 15, 20, 98);
+INSERT into store_inventory VALUES(5, "Primer", 3, 18, 15, 84);
+INSERT into store_inventory VALUES(6, "Mascara", 2, 13, 5, 98);
+INSERT into store_inventory VALUES(7, "Eyeliner", 2, 23, 10, 98);
+INSERT into store_inventory VALUES(8, "Loose Powder", 3, 19, 15, 85);
+INSERT into store_inventory VALUES(9, "Eyebrow Pencil", 2, 33, 10, 80);
+INSERT into store_inventory VALUES(10, "Nail Polish", 10, 16, 3, 70);
+INSERT into store_inventory VALUES(11, "Face Mask", 7, 15, 8, 75);
+INSERT into store_inventory VALUES(12, "Hairspray", 9, 12, 8, 78);
+INSERT into store_inventory VALUES(13, "Setting Spray", 3, 26, 25, 71);
+INSERT into store_inventory VALUES(14, "Perfume", 7, 15, 20, 78);
+INSERT into store_inventory VALUES(15, "Facial Cleanser", 7, 11, 10, 98);
+
+-- Display the database
+SELECT * FROM store_inventory;
+
+-- Display the database ordered by price. 
+SELECT * FROM store_inventory
+ORDER BY price desc; 
+
+-- What is the number of items in the store?
+SELECT SUM(quantity) FROM store_inventory;
+
+-- How much will it cost to fill the stores inventory?
+SELECT SUM(price) FROM store_inventory;
+
+-- What is the avg price of items in the bulk section? 
+SELECT AVG(price) "avg bulk item price"
+FROM store_inventory
+where aisle='3'; 
+
+-- What are the top 3 most popular items? 
+SELECT item, price, popularity
+FROM store_inventory
+order by popularity desc
+limit 3; 
