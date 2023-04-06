@@ -1,0 +1,39 @@
+-- Create table about Movie Stars
+
+CREATE TABLE Movie_Stars 
+(Id INTEGER PRIMARY KEY, Name TEXT, Age INTEGER, Height TEXT, Gender TEXT, Spouse TEXT, Movie1 TEXT, Movie2 TEXT, Movie3 TEXT);
+
+INSERT INTO Movie_Stars (name, age, height, gender, spouse, movie1, movie2, movie3) VALUES ("Brad Pitt", 58, "5'11", "Male", "None", "Mr. and Mrs. Smith", "Troy", "Fight Club");
+INSERT INTO Movie_Stars (name, age, height, gender, spouse, movie1, movie2, movie3) VALUES ("John Krasinski", 42, "6'3", "Male", "Emily Blunt", "A Quiet Place", "Detroit", "13 Hours");
+INSERT INTO Movie_Stars (name, age, height, gender, spouse, movie1, movie2, movie3) VALUES ("Emily Blunt", 39, "5'6", "Female", "John Krasinski", "A Quiet Place", "The Devil Wears Prada", "Jungle Cruise");
+INSERT INTO Movie_Stars (name, age, height, gender, spouse, movie1, movie2, movie3) VALUES ("Mila Kunis", 38, "5'4", "Female", "Ashton Kutcher", "Four Good Days", "Bad Moms", "Extract");
+INSERT INTO Movie_Stars (name, age, height, gender, spouse, movie1, movie2, movie3) VALUES ("Chris Hemsworth", 38, "6'3", "male", "Elsa Pataky", "Extraction", "MIB International", "Thor");
+INSERT INTO Movie_Stars (name, age, height, gender, spouse, movie1, movie2, movie3) VALUES ("Kate McKinnon", 38, "5'3", "Female", "Jackie Abbott", "Ghostbusters", "The Spy Who Dumped Me", "Ballerina");
+INSERT INTO Movie_Stars (name, age, height, gender, spouse, movie1, movie2, movie3) VALUES ("Ashton Kutcher", 44, "6'2", "male", "Mila Kunis", "The Butterfly Effect", "The Killers", "Just Married");
+
+-- Create table with information regarding each movie star
+
+CREATE TABLE Actor_Info 
+(Id INTEGER PRIMARY KEY, Name TEXT, Age INTEGER, Gender TEXT, Spouse TEXT, Oscar TEXT);
+
+INSERT INTO Actor_Info (name, age, gender, spouse, Oscar) VALUES ("Brad Pitt", 58, "Male", "None", "Yes");
+INSERT INTO Actor_Info (name, age, gender, spouse, Oscar) VALUES ("John Krasinski", 42, "Male", "Emily Blunt", "No");
+INSERT INTO Actor_Info (name, age, gender, spouse, Oscar) VALUES ("Emily Blunt", 39, "Female", "John Krasinski", "No");
+INSERT INTO Actor_Info (name, age, gender, spouse, Oscar) VALUES ("Mila Kunis", 38, "Female", "Ashton Kutcher", "No");
+INSERT INTO Actor_Info (name, age, gender, spouse, Oscar) VALUES ("Chris Hemsworth", 38, "Male", "Elsa Pataky", "No");
+INSERT INTO Actor_Info (name, age, gender, spouse, Oscar) VALUES ("Kate McKinnon", 38, "Female", "Jackie Abbott", "No");
+INSERT INTO Actor_Info (name, age, gender, spouse, Oscar) VALUES ("Ashton Kutcher", 44, "Male", "Mila Kunis", "No");
+
+-- Who's married to who?
+SELECT Movie_Stars.name, Actor_Info.spouse AS Married_to
+    FROM Movie_Stars
+    JOIN Actor_Info
+    ON Movie_Stars.id = Actor_Info.id;
+
+-- Have they won any oscars?
+SELECT Movie_Stars.name, Actor_Info.Oscar AS Oscar_Award
+    FROM Movie_Stars
+    LEFT OUTER JOIN Actor_Info
+    ON Movie_Stars.id = Actor_Info.id;
+
+
