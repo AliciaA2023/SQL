@@ -16,7 +16,8 @@ AND orderid <> 'Order ID'
 ;
 
 -- #3. Select the customer account numbers for all the orders that were placed in February. 
-SELECT distinct acctnum
+SELECT 
+DISTINCT acctnum
 FROM BIT_DB.customers cust
 
 -- INNER JOIN BIT_DB.FebSales Feb
@@ -26,7 +27,8 @@ AND orderid <> 'Order ID'
 ;
 
 -- #4. Which product was the cheapest one sold in January, and what was the price? 
-SELECT distinct Product, 
+SELECT 
+DISTINCT Product, 
 price
 FROM BIT_DB.JanSales
 WHERE  price in (
@@ -36,7 +38,8 @@ FROM BIT_DB.JanSales
 ;
 
 -- #OR 
-SELECT distinct product, 
+SELECT 
+DISTINCT product, 
 price 
 FROM BIT_DB.JanSales 
 ORDER BY price ASC 
@@ -44,7 +47,8 @@ LIMIT 1
 ;
 
 -- #5. What is the total revenue for each product sold in January?
-SELECT sum(quantity)*price as revenue,
+SELECT 
+SUM(quantity)*price as revenue,
 product
 FROM BIT_DB.JanSales
 GROUP BY product
@@ -70,4 +74,54 @@ ON FEB.orderid=cust.order_id
 WHERE Feb.Quantity>2
 AND length(orderid) = 6 
 AND orderid <> 'Order ID'
+;
+
+-- Filtering the data by date
+
+-- #1 gives the result between the two specified order dates.
+SELECT
+orderdate
+FROM BIT_DB.FebSales
+WHERE orderdate BETWEEN '02/13/19 00:00' AND '02/18/19 00:00'
+;
+
+-- #2 gives the location of a specified order date.
+SELECT
+location
+FROM BIT_DB.FebSales
+WHERE orderdate = '02/18/19 01:35'
+;
+
+-- #3 gives the quantity of all specified order dates that start with 02/18/19.
+SELECT
+SUM(quantity)
+FROM BIT_DB.FebSales
+WHERE orderdate like '02/18/19%'
+;
+
+-- more filtering, but by products
+
+-- #1 
+SELECT 
+DISTINCT Product
+FROM BIT_DB.FebSales
+WHERE Product like '%Batteries%'
+;
+
+-- #2 
+SELECT 
+DISTINCT Product,
+Price
+FROM BIT_DB.FebSales 
+WHERE Price like '%.99'
+;
+
+-- more filtering, but by all the products sold in Los Angeles in February, and how many of each were sold.
+SELECT
+Product,
+SUM(Quantity),
+location
+FROM BIT_DB.FebSales
+WHERE location like '%Los Angeles%'
+GROUP BY Product
 ;
