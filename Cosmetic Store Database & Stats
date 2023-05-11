@@ -1,4 +1,6 @@
--- Create a cosmetics store database
+-- # For this project, I created a cosmetic store database from scratch.
+-- # Then, I created a table and inserted data into it.
+-- # Finally, I performed analytics on the data using SQL. 
 
 CREATE TABLE store_inventory (id INTEGER PRIMARY key, item TEXT, aisle TEXT, quantity INTEGER, price INTEGER, popularity INTEGER);
 
@@ -18,25 +20,25 @@ INSERT into store_inventory VALUES(13, "Setting Spray", 3, 26, 25, 71);
 INSERT into store_inventory VALUES(14, "Perfume", 7, 15, 20, 78);
 INSERT into store_inventory VALUES(15, "Facial Cleanser", 7, 11, 10, 98);
 
--- Display the database
+-- # Display the database
 SELECT * FROM store_inventory;
 
--- Display the database ordered by price. 
+-- # Display the database ordered by price. 
 SELECT * FROM store_inventory
 ORDER BY price desc; 
 
--- What is the number of items in the store?
+-- # What is the number of items in the store?
 SELECT SUM(quantity) FROM store_inventory;
 
--- How much will it cost to fill the stores inventory?
+-- # How much will it cost to fill the stores inventory?
 SELECT SUM(price) FROM store_inventory;
 
--- What is the avg price of items in the bulk section? 
+-- # What is the avg price of items in the bulk section? 
 SELECT AVG(price) "avg bulk item price"
 FROM store_inventory
 where aisle='3'; 
 
--- What are the top 3 most popular items? 
+-- # What are the top 3 most popular items? 
 SELECT item, price, popularity
 FROM store_inventory
 order by popularity desc
